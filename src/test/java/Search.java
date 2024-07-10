@@ -17,13 +17,20 @@ public class Search {
 
     @Test
     void searchJUnit5CodeTest() {
-
         open("/selenide/selenide");
         $("#wiki-tab").click();
         $("#wiki-pages-filter").setValue("SoftAssertions");
         $(byText("SoftAssertions")).click();
-        $("#wiki-content").shouldHave(text("3. Using JUnit5 extend test class:"));
-
+        $("#wiki-content").shouldHave(text("""
+                @ExtendWith({SoftAssertsExtension.class})
+                class Tests {
+                @Test
+                void test() {
+                Configuration.assertionMode = SOFT;
+                open("page.html");
+                $("#first").should(visible).click();
+                $("#second").should(visible).click();
+                """));
     }
 }
 
