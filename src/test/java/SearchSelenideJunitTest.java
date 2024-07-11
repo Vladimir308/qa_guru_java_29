@@ -20,7 +20,7 @@ public class SearchSelenideJunitTest {
         open("/selenide/selenide");
         $("#wiki-tab").click();
         $("#wiki-pages-filter").setValue("SoftAssertions");
-        $(byText("SoftAssertions")).click();
+        $("#wiki-wrapper").$(byText("Soft assertions")).click();
         $("#wiki-content").shouldHave(text("""
                 @ExtendWith({SoftAssertsExtension.class})
                 class Tests {
